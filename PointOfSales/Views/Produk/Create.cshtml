@@ -1,0 +1,25 @@
+﻿@model PointOfSales.Models.Context.Produk
+
+@{
+
+}
+
+<div class="container">
+    <div class="col-md-12">
+        <form method="post" action="@Url.Action("Post","Produk")">
+            <div class="form-group">
+                <label class="control-label">Nama Produk</label>
+                <input type="text" class="form-control" name="Nama Produk" placeholder="nama produk" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Harga</label>
+                <input type="text" class="form-control" name="Harga" placeholder="harga" required>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Kategori</label>
+                <select class="form-control" asp-for="KategoriId" asp-items="@ViewBag.KategoriId" required></select>
+            </div>
+            <button class="btn btn-success" type="submit">Create</button>
+        </form>
+    </div>
+</div>

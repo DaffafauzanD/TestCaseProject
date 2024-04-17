@@ -1,0 +1,44 @@
+﻿@using PointOfSales.Models.Context;
+@model List<Produk>
+@{
+
+}
+<a href="@Url.Action("Create","Produk")">Create</a>
+<div class="Container">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id Produk</th>
+                        <th>Nama Produk</th>
+                        <th>Harga</th>
+                        <th>Kategori</th>
+                        <th>Create At</th>
+                        <th>Update At</th>
+                        <th colspan="2" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var produk in Model)
+                    {
+                        <tr>
+                            <td>@produk.Id</td>
+                            <td>@produk.Nama_produk</td>
+                            <td>@produk.Harga</td>
+                            <td>@produk.Kategori.Nama_Kategori</td>
+                            <td>@produk.CreateAt</td>
+                            <td>@produk.UpdateAt</td>
+                            <td class="text-center">
+                                <a class="btn btn-sm btn-primary" href="">Edit</a>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-sm btn-danger" href="">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
