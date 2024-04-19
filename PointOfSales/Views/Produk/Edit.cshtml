@@ -6,7 +6,8 @@
 
 <div class="container">
     <div class="col-md-12">
-        <form method="post" asp-action="Create">
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Nama_produk" class="control-label">Nama Produk</label>
                 <input asp-for="Nama_produk" class="form-control" placeholder="nama produk" required>
@@ -19,7 +20,7 @@
                 <label asp-for="KategoriId" class="control-label">Kategori</label>
                 <select class="form-control" asp-for="KategoriId" asp-items="@ViewBag.KategoriId" required></select>
             </div>
-            <button class="btn btn-success" type="submit">Create</button>
+            <button class="btn btn-success" type="submit">Edit</button>
         </form>
         <div>
             <a asp-action="List">Back to List</a>

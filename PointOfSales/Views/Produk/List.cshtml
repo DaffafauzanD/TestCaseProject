@@ -3,7 +3,7 @@
 @{
 
 }
-<a href="@Url.Action("Create","Produk")">Create</a>
+<a asp-action="Create">Create</a>
 <div class="Container">
     <div class="col-md-12">
         <div class="table-responsive">
@@ -30,10 +30,10 @@
                             <td>@produk.CreateAt</td>
                             <td>@produk.UpdateAt</td>
                             <td class="text-center">
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
+                                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@produk.Id">Edit</a>
                             </td>
                             <td class="text-center">
-                                <a class="btn btn-sm btn-danger" href="">Delete</a>
+                                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@produk.Id">Delete</a>
                             </td>
                         </tr>
                     }

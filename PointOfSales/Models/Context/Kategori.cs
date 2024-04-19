@@ -6,7 +6,7 @@ namespace PointOfSales.Models.Context
 	{
 		[Key]
 		public int Id_kategori { get; set; }
-		public string Nama_Kategori { get; set; }
+		public string? Nama_Kategori { get; set; }
 
 		public virtual ICollection<Produk>? Produk { get; set; }
 	}
