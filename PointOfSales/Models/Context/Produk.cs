@@ -13,9 +13,10 @@ namespace PointOfSales.Models.Context
 
 		public virtual Kategori? Kategori { get; set; }
 
-		[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-		public DateTime CreateAt { get; set; }
+		
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+		public DateTime CreateAt { get; set; }
+
         public DateTime UpdateAt { get; set; }
 
 	}

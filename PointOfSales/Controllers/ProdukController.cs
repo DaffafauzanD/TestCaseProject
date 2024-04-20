@@ -66,34 +66,53 @@ namespace PointOfSales.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id, Nama_produk, Harga, KategoriId, CreateAt, UpdateAt")] Produk produk)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id != produk.Id)
+            if (id == null)
             {
                 return NotFound();
             }
-            if (ModelState.IsValid)
+            var ProdukUpdate = await _context.Produk.FirstOrDefaultAsync(s => s.Id == id);
+            if (await TryUpdateModelAsync<Produk>(
+                ProdukUpdate,
+                "",
+                s => s.Id, s => s.Nama_produk, s => s.KategoriId, s => s.Harga, s => s.UpdateAt))
             {
                 try
                 {
-                    _context.Update(produk);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction("List", "Produk");
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException /* ex */)
                 {
-                    if (!AdaProduk(produk.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    //Log the error (uncomment ex variable name and write a log.)
+                    ModelState.AddModelError("", "Unable to save changes. " +
+                        "Try again, and if the problem persists, " +
+                        "see your system administrator.");
                 }
-                return RedirectToAction("List", "Produk");
             }
-            ShowNamaKategori();
-            return View(produk);
+            //if (ModelState.IsValid)
+            //{
+            //    try
+            //    {
+            //        _context.Update(produk);
+            //        await _context.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        if (!AdaProduk(produk.Id))
+            //        {
+            //            return NotFound();
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
+            //    return RedirectToAction("List", "Produk");
+            //}
+           
+            return View(ProdukUpdate);
        
         }
 
